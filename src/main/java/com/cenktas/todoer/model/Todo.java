@@ -3,6 +3,7 @@ package com.cenktas.todoer.model;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 public class Todo {
@@ -58,5 +59,16 @@ public class Todo {
 
     public void setLastUpdatedAt(LocalDateTime last_updated) {
         this.lastUpdatedAt = last_updated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Todo todo)) return false;
+        return id == todo.id && Objects.equals(text, todo.text) && status == todo.status && Objects.equals(createdAt, todo.createdAt) && Objects.equals(lastUpdatedAt, todo.lastUpdatedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, text, status, createdAt, lastUpdatedAt);
     }
 }
