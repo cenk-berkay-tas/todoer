@@ -16,6 +16,12 @@ public class TodoTests {
         assertEquals(todoText, todo.getText());
         assertEquals(todo.getCreatedAt(), todo.getLastUpdatedAt());
         assertEquals(Status.TODO, todo.getStatus());
+    }
 
+    @Test
+    public void TodoCanUpdate() {
+        Todo todo = new Todo("test");
+        todo.setStatus(Status.DONE);
+        assertEquals( Status.DONE, todo.getStatus());
     }
 }
