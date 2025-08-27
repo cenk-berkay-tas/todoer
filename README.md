@@ -13,10 +13,17 @@ Basic REST API for a personal task manager.
 ## todo template
 ```json
 {
-  "id": "f123710c-bf69-47e1-a97f-f6f035c95c23",
+  "id": 6,
   "text": "buy groceries",
-  "created": 2012-04-23T18:25:43.511Z,
-  "last update": 2012-04-23T18:25:43.511Z,
+  "createdAt": "2012-04-23T18:25:43.511Z",
+  "lastUpdatedAt": "2012-04-23T18:25:43.511Z",
   "status": "DONE"
 }
 ```
+## Options for status
+- TODO
+- DONE
+- IN PROGRESS
+- ARCHIVED
+# TODO list
+- [ ] add DELETE, PUT and OPTIONS
