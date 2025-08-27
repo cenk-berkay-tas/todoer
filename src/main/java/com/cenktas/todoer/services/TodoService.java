@@ -3,6 +3,7 @@ package com.cenktas.todoer.services;
 import com.cenktas.todoer.model.Status;
 import com.cenktas.todoer.model.Todo;
 import com.cenktas.todoer.model.TodoNotFoundException;
+import com.cenktas.todoer.model.TodoRequest;
 import com.cenktas.todoer.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public class TodoService {
     public Todo getTodo(long id) {
         return todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
     }
-    public void createTodo(Todo todo) {
-        todoRepository.save(todo);
+    public Todo createTodo(TodoRequest todoRequest) {
+        return todoRepository.save(new Todo(todoRequest.text()));
     }
 
     public Todo updateTodo(long id, Status status) {
