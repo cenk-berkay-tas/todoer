@@ -7,6 +7,8 @@ import com.cenktas.todoer.model.TodoRequest;
 import com.cenktas.todoer.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class TodoService {
     private final TodoRepository todoRepository;
@@ -29,6 +31,7 @@ public class TodoService {
     public Todo updateTodo(long id, Status status) {
         Todo todo = todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
         todo.setStatus(status);
+        todo.setLastUpdatedAt(LocalDateTime.now());
         todoRepository.save(todo);
         return todo;
     }

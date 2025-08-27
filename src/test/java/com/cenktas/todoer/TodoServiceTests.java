@@ -13,8 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -55,7 +54,7 @@ public class TodoServiceTests {
         Todo updatedTodo = service.updateTodo(1L, Status.DONE);
 
         assertEquals(Status.DONE, todo.getStatus());
-        assertEquals(todo, updatedTodo);
+        assertNotEquals(todo.getCreatedAt(), todo.getLastUpdatedAt());
         verify(mockRepository).save(todo);
     }
 
