@@ -17,24 +17,24 @@ public class TodoController {
     }
 
     @GetMapping("/api/v1/todos")
-    private ResponseEntity<Iterable<Todo>> getAllTodos() {
+    public ResponseEntity<Iterable<Todo>> getAllTodos() {
         Iterable<Todo> todos = todoService.getAllTodos();
         return ResponseEntity.status(HttpStatus.OK).body(todos);
     }
 
     @GetMapping("/api/v1/todos/{id}")
-    private ResponseEntity<Todo> getTodo(@PathVariable long id) {
+    public ResponseEntity<Todo> getTodo(@PathVariable long id) {
         return ResponseEntity.status(HttpStatus.OK).body(todoService.getTodo(id));
     }
 
     @PostMapping("/api/v1/todos")
-    private ResponseEntity<Todo> newTodo(@RequestBody TodoRequest todoRequest) {
+    public ResponseEntity<Todo> newTodo(@RequestBody TodoRequest todoRequest) {
         Todo todo = todoService.createTodo(todoRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(todo);
     }
 
     @PatchMapping("/api/v1/todos/{id}")
-    private ResponseEntity<Todo> updateTodo(@PathVariable long id, @RequestBody StatusUpdate s) {
+    public ResponseEntity<Todo> updateTodo(@PathVariable long id, @RequestBody StatusUpdate s) {
         return ResponseEntity.status(HttpStatus.OK).body(todoService.updateTodo(id, s.status()));
     }
 }
