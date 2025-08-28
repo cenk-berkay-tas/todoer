@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TodoController {
     private final TodoService todoService;
@@ -31,6 +33,12 @@ public class TodoController {
     public ResponseEntity<Todo> addTodo(@RequestBody TodoRequest todoRequest) {
         Todo todo = todoService.createTodo(todoRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(todo);
+    }
+
+    @PostMapping("/api/v1/todos/batch")
+    public ResponseEntity<Iterable<Todo>> batchAddTodos(@RequestBody List<TodoRequest> todoRequests) {
+        Iterable<Todo> todos = todoService.batchCreateTodos(todoRequests);
+        return ResponseEntity.status(HttpStatus.CREATED).body(todos);
     }
 
     @PatchMapping("/api/v1/todos/{id}")

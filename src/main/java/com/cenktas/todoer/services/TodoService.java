@@ -8,6 +8,7 @@ import com.cenktas.todoer.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class TodoService {
@@ -26,6 +27,13 @@ public class TodoService {
     }
     public Todo createTodo(TodoRequest todoRequest) {
         return todoRepository.save(new Todo(todoRequest.text()));
+    }
+
+    public Iterable<Todo> batchCreateTodos(List<TodoRequest> todoRequests) {
+        Iterable<Todo> todos = todoRequests.stream()
+                .map(s -> new Todo(s.text()))
+                .toList();
+        return todoRepository.saveAll(todos);
     }
 
     public Todo updateTodo(long id, Status status) {
