@@ -35,4 +35,14 @@ public class TodoService {
         todoRepository.save(todo);
         return todo;
     }
+
+    public void deleteAllTodos() {
+        todoRepository.deleteAll();
+    }
+
+    public void deleteTodo(long id) {
+        Todo todo = todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
+        todoRepository.delete(todo);
+    }
+
 }

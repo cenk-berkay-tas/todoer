@@ -28,7 +28,7 @@ public class TodoController {
     }
 
     @PostMapping("/api/v1/todos")
-    public ResponseEntity<Todo> newTodo(@RequestBody TodoRequest todoRequest) {
+    public ResponseEntity<Todo> addTodo(@RequestBody TodoRequest todoRequest) {
         Todo todo = todoService.createTodo(todoRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(todo);
     }
@@ -36,5 +36,17 @@ public class TodoController {
     @PatchMapping("/api/v1/todos/{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable long id, @RequestBody StatusUpdate s) {
         return ResponseEntity.status(HttpStatus.OK).body(todoService.updateTodo(id, s.status()));
+    }
+
+    @DeleteMapping("/api/v1/todos")
+    public ResponseEntity<Todo> deleteAllTodos() {
+        todoService.deleteAllTodos();
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @DeleteMapping("/api/v1/todos/{id}")
+    public ResponseEntity<Todo> deleteTodo(@PathVariable long id) {
+        todoService.deleteTodo(id);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }
