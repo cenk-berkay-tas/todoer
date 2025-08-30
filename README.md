@@ -1,5 +1,5 @@
 # todoer
-Basic REST API for a personal task manager backend.
+Basic REST API backend for a personal task manager.
 ## API doc
 ### todos API
 - GET `/api/v1/todos` (get all todos)
