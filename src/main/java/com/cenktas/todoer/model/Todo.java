@@ -14,6 +14,8 @@ public class Todo {
     private LocalDateTime createdAt;
     private LocalDateTime lastUpdatedAt;
 
+    public Todo() {}
+
     public Todo(String text) {
         this.text = text;
         this.createdAt = LocalDateTime.now();
